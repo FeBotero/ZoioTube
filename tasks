@@ -15,3 +15,7 @@
             (   )Curtir videos
             (   )Denunciar Videos - Envia mensagem para Administrador com ID do video e com a mensagem do denunciante(autor,mensagem)
         )
+    Criação de Usuarios
+        (
+            (   ) Criação de usuario com as informações que o Google enviar para o back
+        )
