@@ -1,0 +1,17 @@
+[BACKEND]
+    Postagem de videos
+        (
+            (   )Upload de video;
+            (   )Titulo de Video/Descrição
+        )
+    Comentário de videos
+        (
+            (   )ID Autor
+            (   )ID Video
+            (   )Conteúdo de Comentário
+        )
+    Interação com videos
+        (
+            (   )Curtir videos
+            (   )Denunciar Videos - Envia mensagem para Administrador com ID do video e com a mensagem do denunciante(autor,mensagem)
+        )
