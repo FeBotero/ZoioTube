@@ -20,7 +20,7 @@ async function findUserByID(req: Irequest, res: Response) {
   const post = await service.findPostByID(id);
   res.send(post);
 }
-async function createUser(req: Irequest, res: Response) {
+async function createPost(req: Irequest, res: Response) {
   const body = req.body;
   if (!body || body.content === "") {
     res.status(400).json({ message: "ID inválido" });
@@ -44,12 +44,12 @@ async function deleteByID(req: Irequest, res: Response) {
     return res.status(400).json({ message: "ID inválido!" });
   }
   await service.deletePost(id);
-  res.send({ message: "Post deleted" });
+  res.send({ message: "POst excluído com sucesso!" });
 }
 export default {
   findAllPost,
   findUserByID,
-  createUser,
+  createPost,
   updateById,
   deleteByID,
 };

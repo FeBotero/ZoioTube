@@ -4,3 +4,11 @@ import mongoose from "mongoose";
 export function isObjectIdValid(id: any) {
   return mongoose.Types.ObjectId.isValid(id);
 }
+
+export function validBodyUser(body: any) {
+  if (!body || body == " ") {
+    return false;
+  } else {
+    return true;
+  }
+}
