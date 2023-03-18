@@ -1,5 +1,13 @@
 import mongoose from "mongoose"
 
+export interface IPost{
+    author:String;
+    content:String;
+    date:String
+}
+
+
+
 const postSchema = new mongoose.Schema({
     author:{
         type:String,
