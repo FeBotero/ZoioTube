@@ -19,3 +19,27 @@
         (
             (   ) Criação de usuario com as informações que o Google enviar para o back
         )
+
+[FRONTEND]
+    (   ) Tecnologias
+        (   ) React
+        (   ) Typescript
+        (   ) Tailwind
+        (   ) Autenticação Google
+
+    (   ) Rotas
+        (   ) Login
+        (   ) Feed
+            (   ) Listar outros videos na pagina
+            (   ) Cadastrar novo Video 
+                (   ) Título
+                (   ) Video Upload
+                (   ) Descrição ou conteúdo
+            (   ) Curtir Videos
+                (   ) Autor
+            (   ) Comentar Videos
+                (   ) Autor
+                (   ) Conteúdo
+
+                
+Verificar como é feito o uploado
