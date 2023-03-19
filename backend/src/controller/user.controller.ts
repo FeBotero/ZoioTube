@@ -13,6 +13,7 @@ async function findAllUser(req: Irequest, res: Response) {
   const users = await service.findAllUser();
   res.send(users);
 }
+
 async function findUserByID(req: Irequest, res: Response) {
   const id = req.params;
   if (!isObjectIdValid(id)) {
@@ -21,6 +22,7 @@ async function findUserByID(req: Irequest, res: Response) {
   const user = await service.findUserByID(id);
   res.send(user);
 }
+
 async function createUser(req: Irequest, res: Response) {
   const body = req.body;
   if (!validBodyUser(body)) {
@@ -36,18 +38,11 @@ async function createUser(req: Irequest, res: Response) {
       message: "Email já cadastrado!",
     });
   }
-  const salt = await bcrypt.genSalt(12);
-  const passwordHash = await bcrypt.hash(body.password, salt);
 
-  const newUser = {
-    name: body.name,
-    email: body.email,
-    password: passwordHash,
-  };
-
-  await service.createUser(newUser);
+  await service.createUser(body);
   res.status(200).json({ message: "Usuário criado com sucesso!" });
 }
+
 async function updateById(req: Irequest, res: Response) {
   const id = req.params;
   if (!isObjectIdValid(id)) {
@@ -57,6 +52,7 @@ async function updateById(req: Irequest, res: Response) {
   const user = await service.updateUser(id, body);
   res.send(user);
 }
+
 async function deleteByID(req: Irequest, res: Response) {
   const id = req.params;
   if (!isObjectIdValid(id)) {
@@ -65,10 +61,24 @@ async function deleteByID(req: Irequest, res: Response) {
   await service.deleteUser(id);
   res.send({ message: "Usuario excluído com sucesso!" });
 }
+
+async function loginUser(req: Irequest, res: Response) {
+  const users = await service.findAllUser();
+  const body = req.body;
+  const checkEmail = users.some((user) => user.email === body.email);
+  if (!checkEmail) {
+    await service.createUser(body);
+    res.status(200).json({ message: "Usuário criado com sucesso!" });
+  } else {
+    res.status(200).json({ message: "Usuário já cadastrado!" });
+  }
+}
+
 export default {
   findAllUser,
   findUserByID,
   createUser,
   updateById,
   deleteByID,
+  loginUser,
 };

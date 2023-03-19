@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export interface IUser {
   name: String;
   email: String;
-  password: string;
+  avatar: string;
 }
 
 const userSchema = new mongoose.Schema({
@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  password: {
+  avatar: {
     type: String,
     require: true,
   },
