@@ -6,7 +6,7 @@ export function isObjectIdValid(id: any) {
 }
 
 export function validBodyUser(body: any) {
-  if (!body || body == " ") {
+  if (!body || body.name === "" || body.email === "" || body.password === "") {
     return false;
   } else {
     return true;

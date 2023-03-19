@@ -3,7 +3,7 @@ import service from "../service/user.service";
 import { IUser } from "../model/user.model";
 import { Response } from "express";
 import { isObjectIdValid, validBodyUser } from "../utils/functionsUtils";
-
+import bcrypt from "bcrypt";
 interface Irequest {
   params: string;
   body: IUser;
@@ -23,10 +23,29 @@ async function findUserByID(req: Irequest, res: Response) {
 }
 async function createUser(req: Irequest, res: Response) {
   const body = req.body;
-  if (!validBodyUser) {
+  if (!validBodyUser(body)) {
     res.status(400).json({ message: "Não foi possivel criar o usuário!" });
   }
-  await service.createUser(body);
+
+  const users = await service.findAllUser();
+
+  const checkEmail = users.some((user) => user.email === body.email);
+
+  if (checkEmail) {
+    return res.status(422).json({
+      message: "Email já cadastrado!",
+    });
+  }
+  const salt = await bcrypt.genSalt(12);
+  const passwordHash = await bcrypt.hash(body.password, salt);
+
+  const newUser = {
+    name: body.name,
+    email: body.email,
+    password: passwordHash,
+  };
+
+  await service.createUser(newUser);
   res.status(200).json({ message: "Usuário criado com sucesso!" });
 }
 async function updateById(req: Irequest, res: Response) {
