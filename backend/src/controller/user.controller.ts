@@ -65,6 +65,7 @@ async function deleteByID(req: Irequest, res: Response) {
 async function loginUser(req: Irequest, res: Response) {
   const users = await service.findAllUser();
   const body = req.body;
+  console.log(body);
   const checkEmail = users.some((user) => user.email === body.email);
   if (!checkEmail) {
     await service.createUser(body);

@@ -4,6 +4,7 @@ export interface IUser {
   name: String;
   email: String;
   avatar: string;
+  createdAt: String;
 }
 
 const userSchema = new mongoose.Schema({
@@ -16,6 +17,10 @@ const userSchema = new mongoose.Schema({
     require: true,
   },
   avatar: {
+    type: String,
+    require: true,
+  },
+  cretedAt: {
     type: String,
     require: true,
   },

@@ -1,15 +1,23 @@
 import logoGoogle from "../../assets/LogoGoogle.png"
 import * as S from "./styles"
 import { useAuth } from "../../hooks/useAuth"
+import { apiService } from "../../api/api"
 
 export function SignIn(){
     const {user,singInWhithGoogle} = useAuth()
 
-    console.log(user)
+    function loginUser(){
+        singInWhithGoogle()
+        apiService.user.conectUrl(user)
+        console.log(user)
+    }
+
+
+    
     return(
         <S.containerSingIn>
   
-        <button onClick={singInWhithGoogle}>
+        <button onClick={loginUser}>
            <img src={logoGoogle} alt="Google" /> Login google
         </button>
         

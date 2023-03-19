@@ -14,7 +14,9 @@ provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 type User = {
     id: string;
     name: string;
+    email: string;
     avatar: string;
+    createdAt: string
   }
 
 type AuthContextProviderProps = {
@@ -35,15 +37,18 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged(user=>{
             if(user){
-                const {displayName,photoURL,uid} = user
-                if(!displayName||!photoURL){
+                const {displayName,photoURL,uid,email} = user
+                if(!displayName||!photoURL||!email){
                     throw new Error("Missing information from Google Account")
                 }
+                const NowDate = new Date()
 
                 setUser({
                     id:uid,
                     name:displayName,
-                    avatar:photoURL
+                    email:email,
+                    avatar:photoURL,
+                    createdAt:JSON.stringify(NowDate),
                 })
             }
         })
@@ -59,16 +64,18 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         const result = await signInWithPopup(auth,provider)
         
         if (result.user) {
-            const { displayName, photoURL, uid } = result.user;
+            const { displayName, photoURL, uid,email } = result.user;
       
-            if (!displayName || !photoURL) {
+            if (!displayName || !photoURL||!email) {
               throw new Error('Missing information from Google Account.')
             }
-      
+            const NowDate = new Date()
             setUser({
               id: uid,
               name: displayName,
-              avatar: photoURL
+              email:email,
+              avatar: photoURL,
+              createdAt:JSON.stringify(NowDate),
             })
           }
         }
