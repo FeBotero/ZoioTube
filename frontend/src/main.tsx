@@ -4,15 +4,16 @@ import App from './App'
 import { AuthContextProvider } from './contexts/AuthContext'
 import { createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home'
+import { SignIn } from './pages/SignIn/SignIn'
+import { Feed } from './pages/Feed'
 
 const touter = createBrowserRouter([
   {
     path:"/",
     element:<App/>,
     children:[
-      {path:"/",element:<Homee/>},
-      {path:"/login",element:<Login/>},
-      
+      {path:"/",element:<Home/>},
+      {path:"/login",element:<SignIn/>},
       {path:"/feed",element:<Feed/>},
     ]
   }
