@@ -1,13 +1,15 @@
-import { useState } from 'react'
-import { SignIn } from './pages/SignIn/SignIn'
 
+import { Header } from './components/Header/Header'
+import { Footer } from './components/Footer/Footer'
+import { Outlet } from 'react-router-dom'
+import "./styles/global.css"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div className="App">
-      <SignIn/>
+      <Header/>
+      <Outlet/>
+      <Footer/>
         
     </div>
   )

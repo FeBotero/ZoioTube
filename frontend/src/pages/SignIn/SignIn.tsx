@@ -9,7 +9,7 @@ export function SignIn(){
     function loginUser(){
         singInWhithGoogle()
         apiService.user.conectUrl(user)
-        console.log(user)
+        
     }
 
 

@@ -1,54 +1,47 @@
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import logo from "../../assets/logoGoogle.svg"
+import logo from "../../assets/Logo.svg"
+import { ContainerHeader } from "./styles"
+import { useAuth } from "../../hooks/useAuth"
+import { apiService } from "../../api/api"
 
 
 export function Header(){  
-    const [selectUser,setSelectUser]=useState()
+    const [isLogged,setIsLogged]=useState()
     const navigate = useNavigate()
-    const [user,setUser]=useState<any>()
+    const {user,singInWhithGoogle} = useAuth()
+    // const [user,setUser]=useState<any>()
   
-    // const { setDate } = useContext(dateContext)  
-    
-  
-    //   const {theme,changeTheme} = useContext(ThemeContext)
-  
-    //   const{user,setUser}:any = useContext(UserContext)
-      
-  
-    //   function handleChangeTheme() {
-    //     changeTheme();
-        
-    //   }
-  
-    //   function handleDateChange(newDate:Date) {      
+        async function Login(){
+          singInWhithGoogle()
+          await apiService.user.conectUrl(user)
           
-    //       setDate(newDate)
-    //     }   
-    
-        function Login(){
-          navigate("/login")
-          window.location.href=window.location.href
+          localStorage.setItem("user",JSON.stringify(user))
+          navigate("/feed")
         }
+        function getUser(){
+          const info:any = localStorage.getItem("user")
+          setIsLogged(JSON.parse(info))
+          
+        }
+
         
         function LogOut(){
-          setUser(" ")
+          
           localStorage.removeItem("user")
           navigate("/")
           window.location.href=window.location.href
           navigate("/")
         }
-    //     function getUser(){
-    //       setSelectUser(user)
-    //     }
-  
-    //     useEffect(()=>{
-    //       getUser()
-    //     },[user])
+
+        useEffect(()=>{
+          getUser()
+        },[user])
   
   
       return(
-          <>
+          <ContainerHeader>
+            <div>
             <div >
   
            <Link to="/"> <img src={logo} alt="" />
@@ -59,7 +52,7 @@ export function Header(){
   
             
           {
-              !user
+              !isLogged
               ?
               <>
                 
@@ -78,7 +71,7 @@ export function Header(){
               </>
               </>
           }
-  
-          </>
+            </div>
+          </ContainerHeader>
       )
   }

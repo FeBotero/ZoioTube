@@ -1,8 +1,9 @@
 import { GithubLogo,LinkedinLogo } from "phosphor-react";
+import { ContainerFooter } from "./styles";
 export function Footer(){
 
     return(
-        <>
+        <ContainerFooter>
             <ul>
                 <li>©2023 ZoioTube</li>
                 <li>Feito com ♥ por Felipe Botero</li>
@@ -12,6 +13,6 @@ export function Footer(){
                 </li>
 
             </ul>  
-        </>
+        </ContainerFooter>
     )
 }
