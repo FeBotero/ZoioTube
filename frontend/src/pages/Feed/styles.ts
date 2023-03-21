@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
 export const ContainerFeed = styled.div`
-  margin-top: 5rem;
-  justify-content: center;
+  margin: 6rem 0 8rem 0;
+  justify-items: center;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-
-  gap: 20px;
+  gap: 1rem;
 `;

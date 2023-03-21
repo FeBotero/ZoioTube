@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ContainerCard = styled.div`
+  width: 20rem;
   cursor: pointer;
   .videoPreview {
     width: 20rem;
@@ -13,7 +14,6 @@ export const ContainerCard = styled.div`
   .contentAuthor {
     display: flex;
     gap: 1rem;
-    div {
-    }
+    padding-top: 1rem;
   }
 `;
