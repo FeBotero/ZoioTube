@@ -1,4 +1,5 @@
 import { Card } from "../../components/Card"
+import { ContainerFeed } from "./styles"
 
 export function Feed(){
     const info:any =localStorage.getItem("user")
@@ -7,8 +8,19 @@ export function Feed(){
 
 
     return(
-        <>
+        <ContainerFeed>
            <Card/>
-        </>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+           <Card/>
+
+
+        </ContainerFeed>
     )
 }

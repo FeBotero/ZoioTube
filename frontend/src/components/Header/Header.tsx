@@ -35,6 +35,8 @@ export function Header(){
           window.location.href=window.location.href
           navigate("/")
         }
+        //Criar função para postar video 
+
 
         useEffect(()=>{
           getUser()
