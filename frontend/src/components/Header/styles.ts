@@ -17,6 +17,35 @@ export const ContainerHeader = styled.div`
     width: 7rem;
   }
   button {
-    height: 1.5rem;
+    background: transparent;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .logout {
+    padding: 0.3rem;
+    border: 1px solid red;
+    border-radius: 0.5rem;
+  }
+  .logout:hover {
+    border: 1px solid transparent;
+    color: white;
+    background: red;
+  }
+  .login {
+    padding: 0.3rem;
+    border: 1px solid blue;
+    border-radius: 0.5rem;
+  }
+  .login:hover {
+    border: 1px solid transparent;
+    color: white;
+    background: blue;
+  }
+
+  .functionUser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
 `;

@@ -5,6 +5,19 @@ import { ContainerHeader } from "./styles"
 import { useAuth } from "../../hooks/useAuth"
 import { apiService } from "../../api/api"
 import { Camera } from "phosphor-react"
+import Modal from 'react-modal';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+  },
+};
+
 
 
 
@@ -13,13 +26,32 @@ export function Header(){
     const navigate = useNavigate()
     const {user,singInWhithGoogle} = useAuth()
     // const [user,setUser]=useState<any>()
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal() {
+      setIsOpen(true);
+    }
+  
+    function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      <p>HELLO</p>
+    }
+    function closeModal() {
+      setIsOpen(false);
+    }
+
+
+
   
         async function Login(){
           singInWhithGoogle()
-          await apiService.user.conectUrl(user)
-          
+          const request = await apiService.user.conectUrl(user)
           localStorage.setItem("user",JSON.stringify(user))
-          navigate("/feed")
+          if(request.status==200){
+            navigate("/feed")
+          }
+          
+          
         }
         function getUser(){
           const info:any = localStorage.getItem("user")
@@ -35,7 +67,11 @@ export function Header(){
           window.location.href=window.location.href
           navigate("/")
         }
-        //Criar função para postar video 
+
+
+        async function createContent(){
+          alert("Aqui")
+        }
 
 
         useEffect(()=>{
@@ -46,13 +82,11 @@ export function Header(){
       return(
           <ContainerHeader>
             <div>
-            <div >
-  
-           <Link to="/"> <img src={logo} alt="" />
-          </Link>
-           
-            
-            </div>
+              <div>
+                <Link to="/"> 
+                  <img src={logo} alt="" />
+                </Link>
+              </div>
   
             
           {
@@ -67,16 +101,32 @@ export function Header(){
               <>
                
                
-                <>
+                
                
-                  <div>
-                  <button placeholder="Criar"><Camera size={32} /></button>
-                  <button className="login" onClick={LogOut} >Logout</button>
+                  <div className="functionUser">
+                  <button placeholder="Criar" onClick={openModal}><Camera size={36} /></button>
+                  <button className="logout" onClick={LogOut} >Logout</button>
                   </div>
-              </>
+              
               </>
           }
             </div>
+            <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        
+        <button onClick={closeModal}>close</button>
+        <div>I am a modal</div>
+        
+      </Modal>
+
+
+
+
           </ContainerHeader>
       )
   }
