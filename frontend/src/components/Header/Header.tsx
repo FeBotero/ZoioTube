@@ -4,6 +4,8 @@ import logo from "../../assets/Logo.svg"
 import { ContainerHeader } from "./styles"
 import { useAuth } from "../../hooks/useAuth"
 import { apiService } from "../../api/api"
+import { Camera } from "phosphor-react"
+
 
 
 export function Header(){  
@@ -66,6 +68,7 @@ export function Header(){
                 <>
                
                   <div>
+                  <button placeholder="Criar"><Camera size={32} /></button>
                   <button className="login" onClick={LogOut} >Logout</button>
                   </div>
               </>
