@@ -47,8 +47,8 @@ export function Feed(){
     return(
         <ContainerFeed>
            {
-            !videos ? "": videos.map((video)=>(
-                <Card key={video} title={video.title} author={video.author} content={video.content} video={video.image}/>
+            !videos ? "": videos.map(video=>(
+                <Card key={video.image} title={video.title} author={video.author} content={video.content} video={video.image}/>
             ))
            }
            

@@ -32,16 +32,17 @@ export function Login(){
         
         const request = await apiService.user.conectUrl(payload)
         const data = await request.data
+        console.log(data)
 
         
-        if(request.status==200){
-            localStorage.setItem("user",JSON.stringify(data))
+        // if(request.status==200){
+        //     localStorage.setItem("user",JSON.stringify(data))
             
-            setUser(data.id)
-            navigate("/feed")
+        //     setUser(data.id)
+        //     navigate("/feed")
             
 
-        }
+        // }
     }
 
     return(

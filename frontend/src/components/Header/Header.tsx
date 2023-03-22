@@ -41,7 +41,7 @@ export function Header(){
       createdAt:JSON.stringify(new Date())
     }
 
-
+    console.log(isLogged)
     function openModal() {
       setIsOpen(true);
     }
@@ -54,32 +54,14 @@ export function Header(){
       const data = new FormData()
       data.append('file',file)
       data.append("upload_preset","ZoioTube")
-      // data.append("cloud_name",process.env.CLOUDINARY_STORAGE_NAME!)
+
       axios.post('https://api.cloudinary.com/v1_1/dmd5jzmg0/video/upload', data)
         .then(response=>{
           const imageUrl = response.data.secure_url
           setImage(imageUrl)
         })
-      
-
-      // fetch("https://api.cloudnary.com/v1_1/dmd5jzmg0/image/upload",{
 
     }
-    
-
-    // Função para converter o arquivo para base64
-    // function TransformFile(file:any){
-    //   const reader = new FileReader()
-    //   if(file){
-    //     reader.readAsDataURL(file)
-    //     reader.onloadend = ()=>{
-    //       setImage(reader.result)
-    //     }
-    //   }else{
-    //     setImage("")
-    //   }
-    // }
-   
     
     async function Login(){
       navigate("/login")
