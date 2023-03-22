@@ -2,6 +2,7 @@ import service from "../service/post.service";
 import { Request, Response } from "express";
 import { IPost } from "../model/post.model";
 import { isObjectIdValid } from "../utils/functionsUtils";
+import cloudinary from "../utils/cloudinary";
 
 interface Irequest {
   params: string;
@@ -21,12 +22,19 @@ async function findUserByID(req: Irequest, res: Response) {
   res.send(post);
 }
 async function createPost(req: Irequest, res: Response) {
-  const body = req.body;
-  if (!body || body.content === "") {
+  const { author, title, content, createdAt, image }: any = req.body;
+  if (!image || content === "") {
     res.status(400).json({ message: "ID inválido" });
   } else {
-    await service.createPost(body);
-    res.status(200).json({ message: "Post Realizado com sucesso!" });
+    const payload = {
+      author,
+      title,
+      content,
+      createdAt,
+      image,
+    };
+    await service.createPost(payload);
+    res.status(200).json({ message: "Post criado com sucesso!" });
   }
 }
 async function updateById(req: Irequest, res: Response) {

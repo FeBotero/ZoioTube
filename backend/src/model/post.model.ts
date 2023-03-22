@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 export interface IPost {
   author: String;
   content: String;
-  date: String;
+  title: string;
+  image: Object;
+  createdAt: String;
 }
 
 const postSchema = new mongoose.Schema({
@@ -15,8 +17,13 @@ const postSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  urlVideo: {
+  title: {
     type: String,
+    require: true,
+  },
+
+  image: {
+    type: Object,
     require: true,
   },
   createdAt: {

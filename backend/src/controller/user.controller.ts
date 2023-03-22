@@ -30,13 +30,17 @@ async function createUser(req: Irequest, res: Response) {
   }
 
   const users = await service.findAllUser();
+  const user = users.find((u) => u.email === body.email);
 
   const checkEmail = users.some((user) => user.email === body.email);
 
   if (checkEmail) {
-    return res.status(422).json({
-      message: "Email já cadastrado!",
-    });
+    return res
+      .status(422)
+      .json({
+        message: "Email já cadastrado!",
+      })
+      .send(user);
   }
 
   await service.createUser(body);
@@ -65,13 +69,14 @@ async function deleteByID(req: Irequest, res: Response) {
 async function loginUser(req: Irequest, res: Response) {
   const users = await service.findAllUser();
   const body = req.body;
+  const user = users.find((u) => u.email === body.email);
   console.log(body);
   const checkEmail = users.some((user) => user.email === body.email);
   if (!checkEmail) {
     await service.createUser(body);
-    res.status(200).json({ message: "Usuário criado com sucesso!" });
+    res.status(200).json({ message: "Usuário criado com sucesso!" }).send(user);
   } else {
-    res.status(200).json({ message: "Usuário já cadastrado!" });
+    res.status(200).json({ message: "Usuário conectado com sucesso!" });
   }
 }
 

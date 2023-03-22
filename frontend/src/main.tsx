@@ -1,11 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
-import { AuthContextProvider } from './contexts/AuthContext'
+import { UserProvider } from './context/userContext'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Home } from './pages/Home'
-import { SignIn } from './pages/SignIn/SignIn'
+
 import { Feed } from './pages/Feed'
+import { Login } from './pages/Login/Login'
+import { Register } from './pages/Register'
+import { ThemeContextProvider } from './context/ThemeContext'
 
 const router = createBrowserRouter([
   {
@@ -13,7 +16,8 @@ const router = createBrowserRouter([
     element:<App/>,
     children:[
       {path:"/",element:<Home/>},
-      {path:"/login",element:<SignIn/>},
+      {path:"/login",element:<Login/>},
+      {path:"/register",element:<Register/>},
       {path:"/feed",element:<Feed />},
     ]
   }
@@ -22,8 +26,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <RouterProvider router={router}/>
-    </AuthContextProvider>
+    <ThemeContextProvider>
+      <UserProvider>
+        <RouterProvider router={router}/>
+      </UserProvider>
+    </ThemeContextProvider>
   </React.StrictMode>,
 )

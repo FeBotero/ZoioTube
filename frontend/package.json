@@ -12,6 +12,7 @@
     "@cloudinary/react": "^1.11.2",
     "@cloudinary/url-gen": "^1.9.2",
     "@phosphor-icons/react": "github:phosphor-icons/react",
+    "@types/axios": "^0.14.0",
     "@types/dotenv": "^8.2.0",
     "@types/react-modal": "^3.13.1",
     "@types/react-router-dom": "^5.3.3",
