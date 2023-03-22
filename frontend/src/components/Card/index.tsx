@@ -3,20 +3,26 @@ import { apiService } from "../../api/api"
 
 
 import { ContainerCard } from "./styles"
+import { Tuser } from "../../types/types"
 
 
 export function Card({title,author, content, video}:any){
-    const [user,setUser]=useState<any>()
+    const [user,setUser]=useState<Tuser>()
     //buscar usuario para aprensertar
     async function getUser(){
-        const users:any = await apiService.user.readAllURL()
-        const user:any = users.data.filter((user:any) => user.email === author);
-
-        setUser(user)
+        await apiService.user.readByIdURL(author)
+        .then(response=>{
+            const data = response.data
+            setUser(data)
+        })
+        .catch((e:Error)=>{
+            console.log(e)
+        })
+        
         
 
     }
-    console.log(user)
+    
     useEffect(()=>{
         getUser()
     },[])
@@ -24,23 +30,21 @@ export function Card({title,author, content, video}:any){
 
     return(
         <ContainerCard>
-            <video src={video}></video>
+            <video className="videoPreview" src={video}></video>
             <div className="contentAuthor">
-                <p>oi</p>
             {
-                !user?"":user.map((u:any)=>(
-                    <>
+                !user?"":<>
+                    <img className="imgAuthor" src={user.avatar?.toString()} alt="" />
+                    <p>{user.name}</p>
                     
-                    <img src={"e"} alt="" />
-                    <p>{u.name}</p>
-                    </>
-                ))
+                
+                </>
             }
             
             <div >
 
             <h3>{title}</h3>
-            
+            <p>{content}</p>
             </div>
             </div>
 

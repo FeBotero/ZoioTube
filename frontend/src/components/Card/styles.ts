@@ -4,11 +4,12 @@ export const ContainerCard = styled.div`
   width: 20rem;
   cursor: pointer;
   .videoPreview {
-    width: 20rem;
+    width: 15rem;
     border-radius: 0.5rem;
   }
   .imgAuthor {
-    width: 3rem;
+    height: 3rem;
+    width: 2.8rem;
     border-radius: 50%;
   }
   .contentAuthor {

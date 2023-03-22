@@ -22,6 +22,8 @@ const router = createBrowserRouter([
     ]
   }
 ])
+import Modal from 'react-modal';
+Modal.setAppElement("#root")
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

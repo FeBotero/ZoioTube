@@ -1,6 +1,4 @@
 import * as S from "./styles"
-
-// import LoginImage from "../../assets/login.svg"
 import { useState,useContext } from "react"
 import { apiService } from "../../api/api"
 import { Link, useNavigate } from "react-router-dom"
@@ -11,7 +9,7 @@ import { UserContext } from "../../context/userContext"
 export function Login(){
     const[email,setEmail]=useState<String>("")
     const[password,setPassword]=useState<String>("")
-    const{user,setUser}:any = useContext(UserContext)
+    const{setUser}:any = useContext(UserContext)
 
     
 
@@ -32,17 +30,17 @@ export function Login(){
         
         const request = await apiService.user.conectUrl(payload)
         const data = await request.data
-        console.log(data)
+        
 
         
-        // if(request.status==200){
-        //     localStorage.setItem("user",JSON.stringify(data))
+        if(request.status==200){
+            localStorage.setItem("user",JSON.stringify(data))
             
-        //     setUser(data.id)
-        //     navigate("/feed")
+            setUser(data.id)
+            navigate("/feed")
             
 
-        // }
+        }
     }
 
     return(

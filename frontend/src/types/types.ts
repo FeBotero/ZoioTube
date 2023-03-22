@@ -5,6 +5,7 @@ export type Tuser = {
   password: String;
   avatar?: String;
   createdAt?: Date;
+  map?: Array<Object>;
 };
 
 export type Tpost = {

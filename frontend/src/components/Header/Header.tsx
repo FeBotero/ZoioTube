@@ -2,7 +2,8 @@ import { ChangeEvent, useContext, useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import logo from "../../assets/Logo.svg"
 import { ContainerHeader } from "./styles"
-import { useLocalStorage } from "../../hooks/useLocalStorage"
+
+import { UserContext } from "../../context/userContext"
 import { apiService } from "../../api/api"
 import { Camera } from "phosphor-react"
 import Modal from 'react-modal';
@@ -24,24 +25,25 @@ const customStyles = {
 export function Header(){  
     const [isLogged,setIsLogged]=useState()
     const navigate = useNavigate()
-    
+    const{user}:any = useContext(UserContext)
     const [modalIsOpen, setIsOpen] = useState(false);
-    const [user,setUser]=useState<any>()
+   
     
     const [title,setTitle]=useState<any>()
     const [content,setContent]=useState<any>()
     const [image,setImage]=useState<any>()
-    const [videoUrl,setVideoURL]=useState('')
+  
     
     const payload = {
-      author:user?.email,
+      author:isLogged,
       title:title,
       content:content,
       image:image,
       createdAt:JSON.stringify(new Date())
-    }
+    } 
+    
 
-    console.log(isLogged)
+   
     function openModal() {
       setIsOpen(true);
     }
@@ -67,8 +69,7 @@ export function Header(){
       navigate("/login")
     }
     function getUser(){
-      const info:any = localStorage.getItem("user")
-      setIsLogged(JSON.parse(info))
+      setIsLogged(user)
     }
     
     function LogOut(){
@@ -86,6 +87,7 @@ export function Header(){
     useEffect(()=>{
       getUser()
     },[user])
+
       return(
           <ContainerHeader>
             <div>
