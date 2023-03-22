@@ -1,0 +1,49 @@
+.modal{
+    display: flex;
+    flex-direction: column;
+    width: 22rem;
+    height: 18rem;
+    
+}
+.title{
+    margin-top: 1rem;
+    font-size: large;
+}
+.file{
+    display: flex;
+    margin-top: 1rem;
+    height: 3rem;
+    
+}
+.file>video{
+   
+    height: 12rem;
+    width: 6rem;
+}
+.closeModal{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -1rem;
+    
+    
+}
+.closeModal>button{
+    display: flex;
+    
+    align-items: center;
+    background: transparent;
+    border-radius: 50%;
+    cursor:pointer
+}
+.create{
+    margin-bottom:2rem ;
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+}
+.create:hover{
+    background: purple;
+    border: 1px solid transparent;
+    color:white
+}
