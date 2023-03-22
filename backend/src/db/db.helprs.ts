@@ -5,7 +5,7 @@ const url = process.env.URL || "";
 
 mongoose.set("strictQuery", true);
 
-function connectDB() {
+async function connectDB() {
   return mongoose
     .connect(url)
     .then(() => console.log("Banco de dados conectado com sucesso!"))
