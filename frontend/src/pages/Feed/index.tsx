@@ -24,9 +24,9 @@ const customStyles = {
 export function Feed() {
   const [videos, setVideos] = useState<Tpost[]>([]);
   const { user }: any = useContext(UserContext);
-  const [isLogged, setIsLogged] = useState();
+  const [isLogged, setIsLogged] = useState<any>();
   const [modalIsOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate();
   const [title, setTitle] = useState<any>();
   const [content, setContent] = useState<any>();
   const [image, setImage] = useState<any>();
@@ -66,25 +66,36 @@ export function Feed() {
     });
   }
   function getUser() {
-    // const info:any = localStorage.getItem("user")!=""?localStorage.getItem("user"):""
-    // const userInfo = JSON.parse(info)
-    // if(userInfo){
-    //     setUser(userInfo.id)
-    // }else{
-    //     setUser("")
-    //     localStorage.clear()
-    //     navigate("/")
+    setIsLogged(user);
+    // console.log(user);
+    // const info: any =
+    //   localStorage.getItem("user") != "" ? localStorage.getItem("user") : "";
+    // const userInfo = JSON.parse(info);
+    // console.log(userInfo);
+    // if (userInfo) {
+    //   setIsLogged(userInfo.id);
+    // } else {
+    //   setIsLogged("");
+    //   localStorage.clear();
+    //   navigate("/");
     // }
   }
   function createPost() {
-    apiService.post.createURL(payload);
-    closeModal();
-    findAllPost();
-    setImage("");
+    if (payload.author != "") {
+      apiService.post.createURL(payload);
+      closeModal();
+      findAllPost();
+      setImage("");
+    } else {
+      alert("Usuário não conectado");
+    }
   }
 
   useEffect(() => {
-    getUser(), findAllPost();
+    getUser();
+  }, [user]);
+  useEffect(() => {
+    findAllPost();
   }, [videos]);
   return (
     <ContainerFeed>

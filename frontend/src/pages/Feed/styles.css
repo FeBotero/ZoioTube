@@ -17,8 +17,10 @@
 }
 .file>video{
    
-    height: 12rem;
+    height: 4rem;
     width: 6rem;
+    object-fit: cover;
+    object-position: center;
 }
 .closeModal{
     display: flex;

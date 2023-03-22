@@ -5,14 +5,15 @@ import { ContainerCard } from "./styles";
 import { Tuser } from "../../types/types";
 
 export function Card({ title, author, content, video }: any) {
-  const [user, setUser] = useState<Tuser>();
+  const [userPost, setUserPost] = useState<Tuser>();
+
   //buscar usuario para aprensertar
   async function getUser() {
     await apiService.user
       .readByIdURL(author)
       .then((response) => {
         const data = response.data;
-        setUser(data);
+        setUserPost(data);
       })
       .catch((e: Error) => {
         console.log(e);
@@ -27,12 +28,16 @@ export function Card({ title, author, content, video }: any) {
     <ContainerCard>
       <video className="videoPreview" src={video} controls></video>
       <div className="contentAuthor">
-        {!user ? (
+        {!userPost ? (
           ""
         ) : (
           <div className="infoUser">
-            <img className="imgAuthor" src={user.avatar?.toString()} alt="" />
-            <p>{user.name}</p>
+            <img
+              className="imgAuthor"
+              src={userPost.avatar?.toString()}
+              alt=""
+            />
+            <p>{userPost.name}</p>
           </div>
         )}
         <div>
