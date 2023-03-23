@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ContainerHeader = styled.div`
   position: fixed;
   top: 0;
-
   width: 100%;
   z-index: 1000;
   background: rgb(251, 183, 119);
@@ -13,7 +12,7 @@ export const ContainerHeader = styled.div`
     rgba(254, 254, 254, 1) 100%
   );
 
-  div {
+  .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -30,13 +29,14 @@ export const ContainerHeader = styled.div`
   .logout {
     background: ${(props) => props.theme.colors.background};
     padding: 0.3rem;
-    border: 1px solid red;
+    color: ${(props) => props.theme.colors.primary};
+    border: 1px solid ${(props) => props.theme.colors.primary};
     border-radius: 0.5rem;
   }
   .logout:hover {
     border: 1px solid transparent;
     color: white;
-    background: red;
+    background: ${(props) => props.theme.colors.primary};
   }
   .login {
     padding: 0.3rem;
@@ -45,7 +45,7 @@ export const ContainerHeader = styled.div`
   }
   .login:hover {
     border: 1px solid transparent;
-    color: #ff824a;
+    color: ${(props) => props.theme.colors.text};
     background: ${(props) => props.theme.colors.background};
   }
 
@@ -54,5 +54,13 @@ export const ContainerHeader = styled.div`
     justify-content: center;
     align-items: center;
     gap: 1rem;
+  }
+
+  .themeButton {
+    display: flex;
+  }
+  .userTheme {
+    display: flex;
+    gap: 0.5rem;
   }
 `;

@@ -2,7 +2,7 @@ export default {
   title: "light",
 
   colors: {
-    primary: "#ffcb77",
+    primary: "#fa7f4b",
     secundary: "#cac4ce",
     button: "#c47335",
     background: "#edc68e",
@@ -10,3 +10,4 @@ export default {
     title: "#e1b365",
   },
 };
+// #ff824a;

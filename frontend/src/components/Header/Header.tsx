@@ -6,6 +6,8 @@ import { ThemeContext } from "../../context/ThemeContext";
 import { Moon, Sun } from "phosphor-react";
 import { UserContext } from "../../context/userContext";
 
+const info: any = localStorage.getItem("user");
+const userInfo = JSON.parse(info);
 export function Header() {
   const [isLogged, setIsLogged] = useState();
   const navigate = useNavigate();
@@ -16,7 +18,11 @@ export function Header() {
     navigate("/login");
   }
   function getUser() {
-    setIsLogged(user);
+    if (!userInfo?.id) {
+      setIsLogged(user);
+    } else {
+      setIsLogged(userInfo.id);
+    }
   }
   function handleChangeTheme() {
     changeTheme();
@@ -36,33 +42,35 @@ export function Header() {
   return (
     <ContainerHeader>
       <div>
-        <div>
+        <div className="content">
           <Link to="/">
             <img src={logo} alt="" />
           </Link>
-        </div>
-        <button className="toggle" onClick={handleChangeTheme}>
-          {theme == "light" ? (
-            <Sun size={32} fill="white" />
-          ) : (
-            <Moon size={32} />
-          )}
-        </button>
-        {!isLogged ? (
-          <>
-            <button className="login" onClick={Login}>
-              Login
+          <div className="userTheme">
+            <button className="toggle" onClick={handleChangeTheme}>
+              {theme == "light" ? (
+                <Sun size={32} fill="white" />
+              ) : (
+                <Moon size={32} />
+              )}
             </button>
-          </>
-        ) : (
-          <>
-            <div className="functionUser">
-              <button className="logout" onClick={LogOut}>
-                Logout
-              </button>
-            </div>
-          </>
-        )}
+            {!isLogged ? (
+              <>
+                <button className="login" onClick={Login}>
+                  Login
+                </button>
+              </>
+            ) : (
+              <>
+                <div className="functionUser">
+                  <button className="logout" onClick={LogOut}>
+                    Logout
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
     </ContainerHeader>
   );
