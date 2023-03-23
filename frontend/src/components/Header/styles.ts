@@ -6,6 +6,12 @@ export const ContainerHeader = styled.div`
 
   width: 100%;
   z-index: 1000;
+  background: rgb(251, 183, 119);
+  background: linear-gradient(
+    180deg,
+    ${(props) => props.theme.colors.background} 0%,
+    rgba(254, 254, 254, 1) 100%
+  );
 
   div {
     display: flex;
@@ -22,6 +28,7 @@ export const ContainerHeader = styled.div`
     cursor: pointer;
   }
   .logout {
+    background: ${(props) => props.theme.colors.background};
     padding: 0.3rem;
     border: 1px solid red;
     border-radius: 0.5rem;
@@ -33,13 +40,13 @@ export const ContainerHeader = styled.div`
   }
   .login {
     padding: 0.3rem;
-    border: 1px solid blue;
+    border: 1px solid ${(props) => props.theme.colors.primary};
     border-radius: 0.5rem;
   }
   .login:hover {
     border: 1px solid transparent;
-    color: white;
-    background: blue;
+    color: #ff824a;
+    background: ${(props) => props.theme.colors.background};
   }
 
   .functionUser {

@@ -5,8 +5,8 @@ export default {
     primary: "#ffcb77",
     secundary: "#cac4ce",
     button: "#c47335",
-    background: "#f7ece1",
-    text: "#242038",
-    title: "#BA913E",
+    background: "#edc68e",
+    text: "#eb7b59",
+    title: "#e1b365",
   },
 };

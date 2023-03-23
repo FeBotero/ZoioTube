@@ -6,7 +6,7 @@ export const Container = styled.div`
   justify-content: center;
   height: 100vh;
   align-items: center;
-
+  color: ${(props) => props.theme.colors.text};
   img {
     margin-top: -10rem;
     height: 30rem;

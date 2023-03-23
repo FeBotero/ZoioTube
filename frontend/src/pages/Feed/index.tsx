@@ -96,7 +96,7 @@ export function Feed() {
   }, [user]);
   useEffect(() => {
     findAllPost();
-  }, [videos]);
+  }, []);
   return (
     <ContainerFeed>
       <button placeholder="Criar" className="create" onClick={openModal}>

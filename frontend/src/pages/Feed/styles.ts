@@ -11,10 +11,26 @@ export const ContainerFeed = styled.div`
     align-items: center;
     cursor: pointer;
   }
+
+  @media only screen and (max-width: 1100px) {
+  }
 `;
 export const ContainerContent = styled.div`
   justify-items: center;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
+
+  @media only screen and (max-width: 1600px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @media only screen and (max-width: 1500px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media only screen and (max-width: 1000px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
